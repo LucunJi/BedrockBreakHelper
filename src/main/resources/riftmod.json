@@ -1,0 +1,12 @@
+{
+    "id": "bbhelper",
+    "name": "Bedrock Break Helper",
+    "authors": [
+        "lucun"
+    ],
+    "listeners": [{
+        "class": "com.lucun.bbhelper.Listener",
+        "side": "client",
+        "priority": 10
+    }]
+}
