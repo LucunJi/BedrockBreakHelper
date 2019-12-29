@@ -13,9 +13,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'java'
 
-group 'example'
-version '1.0'
-archivesBaseName = 'Example'
+group 'bbhelper'
+version '0.1'
+archivesBaseName = 'Bedrock Break Helper'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
