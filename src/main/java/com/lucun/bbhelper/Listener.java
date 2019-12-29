@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.init.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -48,7 +49,8 @@ public class Listener implements MinecraftStartListener, OverlayRenderer {
 				int x = window.getScaledWidth() / 2 + 10;
 				int y = window.getScaledHeight() / 2;
 				for (EnumFacing f : bbinfo(rayTraceBlock.getBlockPos(), traceBlockState.get(BlockStateProperties.FACING))) {
-					String str = f.toString();
+					String str = f.toString() +
+							(mc.world.getBlockState(rayTraceBlock.getBlockPos().offset(f)).getBlock() == Blocks.REDSTONE_BLOCK ? " +" : "");
 					if (!possible) possible = true;
 					int j = fontRenderer.FONT_HEIGHT;
 					int k = fontRenderer.getStringWidth(str);
