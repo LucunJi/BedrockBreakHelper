@@ -56,11 +56,13 @@ public class Listener implements MinecraftStartListener, OverlayRenderer {
 				MainWindow window = mc.mainWindow;
 				FontRenderer fontRenderer = mc.fontRenderer;
 
+				boolean possible = false;
 				int i = 0;
 				int x = window.getScaledWidth() / 2 + 10;
 				int y = window.getScaledHeight() / 2;
 				for (EnumFacing f : bbinfo(rayTraceBlock.getBlockPos(), traceBlockState.get(BlockStateProperties.FACING))) {
 					String str = f.toString();
+					if (!possible) possible = true;
 					int j = fontRenderer.FONT_HEIGHT;
 					int k = fontRenderer.getStringWidth(str);
 					int i1 = j * i++;
@@ -68,6 +70,14 @@ public class Listener implements MinecraftStartListener, OverlayRenderer {
 					fontRenderer.drawString(str, x, y + i1,
 							f == mc.getRenderViewEntity().getAdjustedHorizontalFacing() ? 0x55FF55 :0xE0E0E0
 					);
+				}
+				if (!possible) {
+					String str = "x";
+					int j = fontRenderer.FONT_HEIGHT;
+					int k = fontRenderer.getStringWidth(str);
+					int i1 = j * i++;
+					GuiOverlayDebug.drawRect(x - 1, y + i1 - 1, x + k + 1, y + i1 + j - 1, -1873784752);
+					fontRenderer.drawString(str, x, y + i1, 0xFF5555);
 				}
 
 				GlStateManager.popMatrix();
