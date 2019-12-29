@@ -1,4 +1,4 @@
-package com.lucun.bbhelper;
+package com.lucun.bbhelper.util;
 
 import static java.lang.Math.floor;
 

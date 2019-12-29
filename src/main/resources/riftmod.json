@@ -4,9 +4,16 @@
     "authors": [
         "lucun"
     ],
-    "listeners": [{
-        "class": "com.lucun.bbhelper.Listener",
+    "listeners": [
+        {
+        "class": "com.lucun.bbhelper.listener.ListenerMinecraftStart",
         "side": "client",
         "priority": 10
-    }]
+        },
+        {
+        "class": "com.lucun.bbhelper.listener.ListenerOverlayRender",
+        "side": "client",
+        "priority": 10
+        }
+    ]
 }

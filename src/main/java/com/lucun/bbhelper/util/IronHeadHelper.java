@@ -1,12 +1,27 @@
-package com.lucun.bbhelper;
+package com.lucun.bbhelper.util;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.*;
 
 public class IronHeadHelper
 {
 	static Scanner scanner = new Scanner(System.in);
+
+	public static EnumFacing[] bbinfo(BlockPos pos, EnumFacing facing) {
+		Vec3i pistonPos = new Vec3i(pos.getX(), pos.getY(), pos.getZ());
+		BlockPos offsetPos = pos.offset(facing);
+		Vec3i pistonExtensionPos = new Vec3i(offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
+
+		return calc(pistonPos, pistonExtensionPos).stream()
+				.sorted(Result::compareTo)
+				.filter(r -> r.distance == 1)
+				.limit(20)
+				.map(r -> getDirection(pistonPos, r.pos))
+				.toArray(EnumFacing[]::new);
+	}
+
 	public static List<Vec3i> explode(Vec3i pos, int range)
 	{
 		Set<Vec3i> set = new HashSet<Vec3i>();
@@ -52,7 +67,7 @@ public class IronHeadHelper
 		return ret;
 	}
 
-	protected static EnumFacing getDirection(Vec3i a, Vec3i b)
+	public static EnumFacing getDirection(Vec3i a, Vec3i b)
 	{
 		if (a.south().equals(b))
 		{
@@ -115,7 +130,7 @@ public class IronHeadHelper
 			}
 		}
 	}
-	protected static class Result implements Comparable<Result>
+	private static class Result implements Comparable<Result>
 	{
 		public Vec3i pos;
 		public int distance;

@@ -1,12 +1,19 @@
-package com.lucun.bbhelper;
+package com.lucun.bbhelper.listener;
 
+import com.lucun.bbhelper.util.IronHeadHelper;
+import com.lucun.bbhelper.util.Vec3i;
+import fi.dy.masa.malilib.interfaces.IRenderer;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
@@ -15,22 +22,17 @@ import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.RayTraceResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dimdev.rift.listener.MinecraftStartListener;
 import org.dimdev.rift.listener.client.OverlayRenderer;
+//import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 
-public class Listener implements MinecraftStartListener, OverlayRenderer {
+public class ListenerOverlayRender implements OverlayRenderer {
 	private static final Logger LOGGER = LogManager.getLogger();
-
-	@Override
-	public void onMinecraftStart() {
-		LOGGER.info("Let's break bedrocks!");
-	}
+	private static final Minecraft mc = Minecraft.getInstance();
 
 	@Override
 	public void renderOverlay() {
-		Minecraft mc = Minecraft.getInstance();
-
 		if (!mc.gameSettings.showDebugInfo) return;
 
 		RayTraceResult rayTraceBlock = mc.getRenderViewEntity().rayTrace(20.0D, 0.0F, RayTraceFluidMode.NEVER);
@@ -48,7 +50,7 @@ public class Listener implements MinecraftStartListener, OverlayRenderer {
 				int i = 0;
 				int x = window.getScaledWidth() / 2 + 10;
 				int y = window.getScaledHeight() / 2;
-				for (EnumFacing f : bbinfo(rayTraceBlock.getBlockPos(), traceBlockState.get(BlockStateProperties.FACING))) {
+				for (EnumFacing f : IronHeadHelper.bbinfo(rayTraceBlock.getBlockPos(), traceBlockState.get(BlockStateProperties.FACING))) {
 					String str = f.toString() +
 							(mc.world.getBlockState(rayTraceBlock.getBlockPos().offset(f)).getBlock() == Blocks.REDSTONE_BLOCK ? " +" : "");
 					if (!possible) possible = true;
@@ -72,18 +74,5 @@ public class Listener implements MinecraftStartListener, OverlayRenderer {
 				GlStateManager.popMatrix();
 			}
 		}
-	}
-
-	private EnumFacing[] bbinfo(BlockPos pos, EnumFacing facing) {
-		Vec3i pistonPos = new Vec3i(pos.getX(), pos.getY(), pos.getZ());
-		BlockPos offsetPos = pos.offset(facing);
-		Vec3i pistonExtensionPos = new Vec3i(offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-
-		return IronHeadHelper.calc(pistonPos, pistonExtensionPos).stream()
-				.sorted(IronHeadHelper.Result::compareTo)
-				.filter(r -> r.distance == 1)
-				.limit(20)
-				.map(r -> IronHeadHelper.getDirection(pistonPos, r.pos))
-				.toArray(EnumFacing[]::new);
 	}
 }
