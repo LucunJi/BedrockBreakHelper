@@ -1,34 +1,21 @@
 package com.lucun.bbhelper;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.dimdev.rift.listener.MinecraftStartListener;
 import org.dimdev.rift.listener.client.OverlayRenderer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 
 public class Listener implements MinecraftStartListener, OverlayRenderer {
