@@ -33,7 +33,7 @@ public class ListenerOverlayRender implements OverlayRenderer {
 
 	@Override
 	public void renderOverlay() {
-		if (!mc.gameSettings.showDebugInfo) return;
+		if (!mc.gameSettings.showDebugInfo || !ListenerKeybind.isActive()) return;
 
 		RayTraceResult rayTraceBlock = mc.getRenderViewEntity().rayTrace(20.0D, 0.0F, RayTraceFluidMode.NEVER);
 

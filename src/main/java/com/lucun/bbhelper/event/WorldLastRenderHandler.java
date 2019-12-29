@@ -1,5 +1,6 @@
 package com.lucun.bbhelper.event;
 
+import com.lucun.bbhelper.listener.ListenerKeybind;
 import com.lucun.bbhelper.util.IronHeadHelper;
 import fi.dy.masa.malilib.interfaces.IRenderer;
 import net.minecraft.block.BlockPistonBase;
@@ -21,7 +22,7 @@ public class WorldLastRenderHandler implements IRenderer {
     private static final Minecraft mc = Minecraft.getInstance();
 
     public void onRenderWorldLast(float partialTicks) {
-        if (!mc.gameSettings.showDebugInfo) return;
+        if (!ListenerKeybind.isActive()) return;
 
 //		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 //		GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -49,7 +50,8 @@ public class WorldLastRenderHandler implements IRenderer {
         bufferBuilder.setTranslation(-d0, -d1, -d2);
 
         BlockPos cameraPos = mc.getRenderViewEntity().getPosition();
-        BlockPos.getAllInBox(cameraPos.add(-16, -16, -16), cameraPos.add(16, 16, 16)).forEach(pos -> {
+        int range = 8;
+        BlockPos.getAllInBox(cameraPos.add(-range, -range, -range), cameraPos.add(range, range, range)).forEach(pos -> {
             if (mc.world.getBlockState(pos).getBlock() instanceof BlockPistonBase) {
                 for (EnumFacing f : IronHeadHelper.bbinfo(pos, mc.world.getBlockState(pos).get(BlockStateProperties.FACING))) {
                     BlockPos validPos = pos.offset(f);
