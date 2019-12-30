@@ -37,5 +37,3 @@
 用了 Fallen-Breath 的[铁头功助手](https://github.com/Fallen-Breath/IronHeadHelper)的代码来计算位置。
 
 [Malilib](https://github.com/maruohon/malilib/tree/rift_1.13.2/)，配置 Mixin 很难受，用 Malilib 就方便多了。
-
-感谢 DimensionalDevelopment 的 [Rift-MDK](https://github.com/DimensionalDevelopment/Rift-MDK/tree/1.13.2)。

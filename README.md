@@ -38,5 +38,3 @@
 Use the code from Fallen-Breath's [calculator](https://github.com/Fallen-Breath/IronHeadHelper) to calculate possible positions.
 
 [Malilib](https://github.com/maruohon/malilib/tree/rift_1.13.2/), I had a hard time setting up Mixins, and using Malilib is much easier.
-
-Great thanks to DimensionalDevelopment's [Rift-MDK](https://github.com/DimensionalDevelopment/Rift-MDK/tree/1.13.2), you saved my life! <3
