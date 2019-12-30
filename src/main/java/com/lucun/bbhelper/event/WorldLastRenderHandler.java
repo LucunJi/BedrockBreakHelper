@@ -2,7 +2,9 @@ package com.lucun.bbhelper.event;
 
 import com.lucun.bbhelper.listener.ListenerKeybind;
 import com.lucun.bbhelper.util.IronHeadHelper;
+import com.lucun.bbhelper.util.MathHelper;
 import fi.dy.masa.malilib.interfaces.IRenderer;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -14,7 +16,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
@@ -50,18 +51,30 @@ public class WorldLastRenderHandler implements IRenderer {
         bufferBuilder.setTranslation(-d0, -d1, -d2);
 
         BlockPos cameraPos = mc.getRenderViewEntity().getPosition();
-        int range = 8;
-        BlockPos.getAllInBox(cameraPos.add(-range, -range, -range), cameraPos.add(range, range, range)).forEach(pos -> {
-            if (mc.world.getBlockState(pos).getBlock() instanceof BlockPistonBase) {
-                for (EnumFacing f : IronHeadHelper.bbinfo(pos, mc.world.getBlockState(pos).get(BlockStateProperties.FACING))) {
-                    BlockPos validPos = pos.offset(f);
-                    drawSuggestion(
-                            tessellator, bufferBuilder,
-                            validPos.getX(), validPos.getY(), validPos.getZ(),
-                            mc.world.getBlockState(validPos).getBlock() == Blocks.REDSTONE_BLOCK ? 1 : 0.5,
-                            mc.world.getBlockState(validPos).getBlock() == Blocks.REDSTONE_BLOCK ?
-                                    new Color(0, 162, 232, 255 / 2) :
-                                    new Color(0, 255, 0, 255 / 2));
+        int renderDistance = ListenerKeybind.getRenderDistance();
+        BlockPos.getAllInBox(cameraPos.add(-renderDistance, -renderDistance, -renderDistance), cameraPos.add(renderDistance, renderDistance, renderDistance)).forEach(pistonPos -> {
+            if (mc.world.getBlockState(pistonPos).getBlock() instanceof BlockPistonBase) {
+                for (BlockPos powerSourcePos : IronHeadHelper.bbinfo(pistonPos, mc.world.getBlockState(pistonPos).get(BlockStateProperties.FACING))) {
+                    EnumFacing facing = MathHelper.getDirectionFacing(pistonPos, powerSourcePos);
+                    if (facing != null) {
+                        Block block = mc.world.getBlockState(powerSourcePos).getBlock();
+                        double size;
+                        Color color;
+                        if (block == Blocks.AIR) {
+                            size = 0.5f;
+                            color = new Color(0, 255, 0, 127);
+                        } else {
+                            size = 1.0f;
+                            if (block == Blocks.REDSTONE_BLOCK) {
+                                color = new Color(0, 162, 232, 127);
+                            } else {
+                                color = new Color(255, 0, 0, 127);
+                            }
+                        }
+                        drawSuggestion(tessellator, bufferBuilder,
+                                powerSourcePos.getX(), powerSourcePos.getY(), powerSourcePos.getZ(),
+                                size, color);
+                    }
                 }
             }
         });
