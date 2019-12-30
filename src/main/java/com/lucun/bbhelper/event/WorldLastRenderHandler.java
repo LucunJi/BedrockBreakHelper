@@ -55,8 +55,8 @@ public class WorldLastRenderHandler implements IRenderer {
         BlockPos.getAllInBox(cameraPos.add(-renderDistance, -renderDistance, -renderDistance), cameraPos.add(renderDistance, renderDistance, renderDistance)).forEach(pistonPos -> {
             if (mc.world.getBlockState(pistonPos).getBlock() instanceof BlockPistonBase) {
                 for (BlockPos powerSourcePos : IronHeadHelper.bbinfo(pistonPos, mc.world.getBlockState(pistonPos).get(BlockStateProperties.FACING))) {
-                    EnumFacing facing = MathHelper.getDirectionFacing(pistonPos, powerSourcePos);
-                    if (facing != null) {
+                    if (ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) <= 2 ||
+                        !ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) == 1) {
                         Block block = mc.world.getBlockState(powerSourcePos).getBlock();
                         double size;
                         Color color;
@@ -65,7 +65,7 @@ public class WorldLastRenderHandler implements IRenderer {
                             color = new Color(0, 255, 0, 127);
                         } else {
                             size = 1.0f;
-                            if (block == Blocks.REDSTONE_BLOCK) {
+                            if (mc.world.getBlockState(powerSourcePos).canProvidePower()) {
                                 color = new Color(0, 162, 232, 127);
                             } else {
                                 color = new Color(255, 0, 0, 127);

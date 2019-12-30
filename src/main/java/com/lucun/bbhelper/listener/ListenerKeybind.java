@@ -17,16 +17,20 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
     private static final int[] RENDER_DISTANCES = new int[]{4, 6, 8, 12, 16};
     private static int renderDistanceIndex = 2;
     private static final Minecraft mc = Minecraft.getInstance();
+    private static boolean renderMore = false;
 
     @Override
     public void processKeybinds() {
         if (this.toggleKeybind.isKeyDown() != this.lastToggleKeybindState) {
             if (this.toggleKeybind.isKeyDown()) {
-                // check if control is pressed
-                if (InputMappings.isKeyDown(341)) {
+                if (InputMappings.isKeyDown(341)) { // check if control is pressed
                     renderDistanceIndex = ++renderDistanceIndex % RENDER_DISTANCES.length;
                     mc.player.sendStatusMessage(new TextComponentString(
                             String.format("Render distance is changed to %s", getRenderDistance())), true);
+                } else if (InputMappings.isKeyDown(342)) { // alt
+                    renderMore = !renderMore;
+                    mc.player.sendStatusMessage(new TextComponentString(
+                            String.format("Render amount: %s", renderMore ? "increased" : "decreased")), true);
                 } else {
                     active = !active;
                     mc.player.sendStatusMessage(new TextComponentString(
@@ -50,5 +54,9 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
 
     public static int getRenderDistance() {
         return RENDER_DISTANCES[renderDistanceIndex];
+    }
+
+    public static boolean isRenderMore() {
+        return renderMore;
     }
 }

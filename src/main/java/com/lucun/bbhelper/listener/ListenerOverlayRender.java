@@ -28,11 +28,12 @@ public class ListenerOverlayRender implements OverlayRenderer {
 	public void renderOverlay() {
 		if (!mc.gameSettings.showDebugInfo || !ListenerKeybind.isActive()) return;
 
-		RayTraceResult rayTraceBlock = mc.getRenderViewEntity().rayTrace(5.0D, 0.0F, RayTraceFluidMode.NEVER);
-		BlockPos rayTracePos = rayTraceBlock.getBlockPos();
-		IBlockState traceBlockState = mc.world.getBlockState(rayTracePos);
+		RayTraceResult rayTraceResult = mc.getRenderViewEntity().rayTrace(5.0D, 0.0F, RayTraceFluidMode.NEVER);
 
-		if (rayTraceBlock != null && rayTraceBlock.type == RayTraceResult.Type.BLOCK) {
+		if (rayTraceResult.type == RayTraceResult.Type.BLOCK) {
+			BlockPos rayTracePos = rayTraceResult.getBlockPos();
+			IBlockState traceBlockState = mc.world.getBlockState(rayTracePos);
+
 			if (traceBlockState.getBlock() instanceof BlockPistonBase) {
 
 				GlStateManager.pushMatrix();
@@ -48,7 +49,7 @@ public class ListenerOverlayRender implements OverlayRenderer {
 					EnumFacing f = MathHelper.getDirectionFacing(rayTracePos, powerSourcePos);
 					if (f != null) {
 						String str = f.toString() +
-								(mc.world.getBlockState(rayTracePos.offset(f)).getBlock() == Blocks.REDSTONE_BLOCK ? " +" : "");
+								(mc.world.getBlockState(powerSourcePos).canProvidePower() ? " +" : "");
 						if (!possible) possible = true;
 						int j = fontRenderer.FONT_HEIGHT;
 						int k = fontRenderer.getStringWidth(str);
