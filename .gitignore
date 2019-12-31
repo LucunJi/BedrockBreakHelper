@@ -1,29 +1,25 @@
-# eclipse
-eclipse
-bin
-*.launch
-.settings
-.metadata
+# gradle
+
+.gradle/
+build/
+out/
+classes/
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
 .classpath
 .project
 
-# idea
-out
-classes
-*.ipr
-*.iws
-*.iml
-.idea
+# fabric
 
-# gradle
-build
-.gradle
-
-# Netbeans
-.nb-gradle
-.nb-gradle-properties
-
-# other
-run
-.DS_Store
-Thumbs.db
+run/
