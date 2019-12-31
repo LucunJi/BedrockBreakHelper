@@ -9,24 +9,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.init.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.RayTraceResult;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.dimdev.rift.listener.client.OverlayRenderer;
-
-//import org.lwjgl.opengl.GL11;
 
 public class ListenerOverlayRender implements OverlayRenderer {
 	private static final Minecraft mc = Minecraft.getInstance();
 
 	@Override
 	public void renderOverlay() {
-		if (!mc.gameSettings.showDebugInfo || !ListenerKeybind.isActive()) return;
+		if (!mc.gameSettings.showDebugInfo) return;
 
 		RayTraceResult rayTraceResult = mc.getRenderViewEntity().rayTrace(5.0D, 0.0F, RayTraceFluidMode.NEVER);
 

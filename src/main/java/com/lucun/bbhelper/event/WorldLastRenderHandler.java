@@ -1,6 +1,6 @@
 package com.lucun.bbhelper.event;
 
-import com.lucun.bbhelper.listener.ListenerKeybind;
+import com.lucun.bbhelper.config.Configs;
 import com.lucun.bbhelper.util.MathHelper;
 import com.lucun.bbhelper.util.PositionProvider;
 import com.lucun.bbhelper.util.Result;
@@ -23,7 +23,7 @@ public class WorldLastRenderHandler implements IRenderer {
     private static final Minecraft mc = Minecraft.getInstance();
 
     public void onRenderWorldLast(float partialTicks) {
-        if (!ListenerKeybind.isActive()) return;
+        if (!Configs.ACTIVE.getBooleanValue()) return;
 
         GlStateManager.disableLighting();
         GlStateManager.disableTexture2D();
@@ -43,15 +43,15 @@ public class WorldLastRenderHandler implements IRenderer {
         bufferBuilder.setTranslation(-d0, -d1, -d2);
 
         BlockPos cameraPos = renderViewEntity.getPosition();
-        int renderDistance = ListenerKeybind.getRenderDistance();
+        int renderDistance = Configs.RENDER_DISTANCE.getIntegerValue();
         BlockPos.getAllInBox(cameraPos.add(-renderDistance, -renderDistance, -renderDistance), cameraPos.add(renderDistance, renderDistance, renderDistance)).forEach(pistonPos -> {
             if (mc.world.getBlockState(pistonPos).getBlock() instanceof BlockPistonBase) {
                 for (Result result : PositionProvider.getResults(pistonPos, mc.world.getBlockState(pistonPos).get(BlockStateProperties.FACING))) {
                     if (result.getChance() <= 0) continue;
 
                     BlockPos powerSourcePos = result.getPos();
-                    if (ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) <= 2 ||
-                        !ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) == 1) {
+                    if (Configs.RENDER_MORE.getBooleanValue() && MathHelper.manhattan(powerSourcePos, pistonPos) <= 2 ||
+                        !Configs.RENDER_MORE.getBooleanValue() && MathHelper.manhattan(powerSourcePos, pistonPos) == 1) {
                         Block block = mc.world.getBlockState(powerSourcePos).getBlock();
                         double size;
                         Color color;

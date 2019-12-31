@@ -1,6 +1,8 @@
 package com.lucun.bbhelper.listener;
 
 import com.google.common.collect.Lists;
+import com.lucun.bbhelper.config.Configs;
+import fi.dy.masa.malilib.MaLiLibConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
@@ -13,32 +15,51 @@ import java.util.Collection;
 public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
     private KeyBinding toggleKeybind;
     private boolean lastToggleKeybindState;
-    private static boolean active = false;
-    private static final int[] RENDER_DISTANCES = new int[]{4, 6, 8, 12, 16};
-    private static int renderDistanceIndex = 2;
     private static final Minecraft mc = Minecraft.getInstance();
-    private static boolean renderMore = false;
 
     @Override
     public void processKeybinds() {
         if (this.toggleKeybind.isKeyDown() != this.lastToggleKeybindState) {
             if (this.toggleKeybind.isKeyDown()) {
-                if (InputMappings.isKeyDown(341)) { // check if control is pressed
-                    renderDistanceIndex = ++renderDistanceIndex % RENDER_DISTANCES.length;
-                    mc.player.sendStatusMessage(new TextComponentString(
-                            String.format("Render distance is changed to %s", getRenderDistance())), true);
-                } else if (InputMappings.isKeyDown(342)) { // alt
-                    renderMore = !renderMore;
-                    mc.player.sendStatusMessage(new TextComponentString(
-                            String.format("Render amount: %s", renderMore ? "increased" : "decreased")), true);
+                if (ListenerMinecraftStart.MALILIB_INSTALLED) {
+                    if (InputMappings.isKeyDown(341)) { // check if control is pressed
+                        toggleRenderDistance();
+                    } else if (InputMappings.isKeyDown(342)) { // alt
+                        toggleRenderMore();
+                    } else {
+                        this.toggleActive();
+                    }
                 } else {
-                    active = !active;
-                    mc.player.sendStatusMessage(new TextComponentString(
-                            String.format("Bedrock Break Helper is now %s", active ? "active" : "inactive")), true);
+                    this.toggleActive();
                 }
             }
             this.lastToggleKeybindState = this.toggleKeybind.isKeyDown();
+            MaLiLibConfigs.saveToFile();
         }
+    }
+
+    private void toggleRenderDistance() {
+        for (int i = 0; i < Configs.RENDER_DISTANCES.length; i++) {
+            if (Configs.RENDER_DISTANCES[i] >= Configs.RENDER_DISTANCE.getIntegerValue()) {
+                Configs.RENDER_DISTANCE.setIntegerValue(Configs.RENDER_DISTANCES[(i + 1) % Configs.RENDER_DISTANCES.length]);
+                break;
+            }
+        }
+        System.out.println(Configs.RENDER_DISTANCE.getIntegerValue());
+        mc.player.sendStatusMessage(new TextComponentString(
+                String.format("Render distance is changed to %s", Configs.RENDER_DISTANCE.getIntegerValue())), true);
+    }
+
+    private void toggleActive() {
+        Configs.ACTIVE.setBooleanValue(!Configs.ACTIVE.getBooleanValue());
+        mc.player.sendStatusMessage(new TextComponentString(
+                String.format("Bedrock Break Helper is now %s", Configs.ACTIVE.getBooleanValue() ? "active" : "inactive")), true);
+    }
+
+    private void toggleRenderMore() {
+        Configs.RENDER_MORE.setBooleanValue(!Configs.RENDER_MORE.getBooleanValue());
+        mc.player.sendStatusMessage(new TextComponentString(
+                String.format("Render amount: %s", Configs.RENDER_MORE.getBooleanValue() ? "increased" : "decreased")), true);
     }
 
     @Override
@@ -46,17 +67,5 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
         // key grave '`'
         this.toggleKeybind = new KeyBinding("Bedrock Break Helper", 96, "key.categories.misc");
         return Lists.newArrayList(this.toggleKeybind);
-    }
-
-    public static boolean isActive() {
-        return active;
-    }
-
-    public static int getRenderDistance() {
-        return RENDER_DISTANCES[renderDistanceIndex];
-    }
-
-    public static boolean isRenderMore() {
-        return renderMore;
     }
 }

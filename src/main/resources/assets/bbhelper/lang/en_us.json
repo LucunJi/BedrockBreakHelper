@@ -1,0 +1,5 @@
+{
+  "bbhelper.config.active": "Active",
+  "bbhelper.config.render_distance": "Render Distance(4~16)",
+  "bbhelper.config.render_more": "If render positions 2 blocks away(manhattan) from piston"
+}
