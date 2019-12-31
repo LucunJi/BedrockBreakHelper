@@ -1,8 +1,9 @@
 package com.lucun.bbhelper.event;
 
 import com.lucun.bbhelper.listener.ListenerKeybind;
-import com.lucun.bbhelper.util.IronHeadHelper;
 import com.lucun.bbhelper.util.MathHelper;
+import com.lucun.bbhelper.util.PositionProvider;
+import com.lucun.bbhelper.util.Result;
 import fi.dy.masa.malilib.interfaces.IRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
@@ -14,7 +15,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
 import java.awt.*;
@@ -25,15 +25,6 @@ public class WorldLastRenderHandler implements IRenderer {
     public void onRenderWorldLast(float partialTicks) {
         if (!ListenerKeybind.isActive()) return;
 
-//		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-//		GL11.glDisable(GL11.GL_TEXTURE_2D);
-//		GL11.glDisable(GL11.GL_CULL_FACE);
-//
-//		GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
-//
-//		GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-//		GL11.glEnable(GL11.GL_BLEND);
-
         GlStateManager.disableLighting();
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
@@ -43,18 +34,22 @@ public class WorldLastRenderHandler implements IRenderer {
 
         BufferBuilder bufferBuilder =tessellator.getBuffer();
 
-        Entity entity = Minecraft.getInstance().getRenderViewEntity();
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
+        Entity renderViewEntity = mc.getRenderViewEntity();
+        double d0 = renderViewEntity.lastTickPosX + (renderViewEntity.posX - renderViewEntity.lastTickPosX) * (double)partialTicks;
+        double d1 = renderViewEntity.lastTickPosY + (renderViewEntity.posY - renderViewEntity.lastTickPosY) * (double)partialTicks;
+        double d2 = renderViewEntity.lastTickPosZ + (renderViewEntity.posZ - renderViewEntity.lastTickPosZ) * (double)partialTicks;
+
 
         bufferBuilder.setTranslation(-d0, -d1, -d2);
 
-        BlockPos cameraPos = mc.getRenderViewEntity().getPosition();
+        BlockPos cameraPos = renderViewEntity.getPosition();
         int renderDistance = ListenerKeybind.getRenderDistance();
         BlockPos.getAllInBox(cameraPos.add(-renderDistance, -renderDistance, -renderDistance), cameraPos.add(renderDistance, renderDistance, renderDistance)).forEach(pistonPos -> {
             if (mc.world.getBlockState(pistonPos).getBlock() instanceof BlockPistonBase) {
-                for (BlockPos powerSourcePos : IronHeadHelper.bbinfo(pistonPos, mc.world.getBlockState(pistonPos).get(BlockStateProperties.FACING))) {
+                for (Result result : PositionProvider.getResults(pistonPos, mc.world.getBlockState(pistonPos).get(BlockStateProperties.FACING))) {
+                    if (result.getChance() <= 0) continue;
+
+                    BlockPos powerSourcePos = result.getPos();
                     if (ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) <= 2 ||
                         !ListenerKeybind.isRenderMore() && MathHelper.manhattan(powerSourcePos, pistonPos) == 1) {
                         Block block = mc.world.getBlockState(powerSourcePos).getBlock();
@@ -62,7 +57,7 @@ public class WorldLastRenderHandler implements IRenderer {
                         Color color;
                         if (block == Blocks.AIR) {
                             size = 0.5f;
-                            color = new Color(0, 255, 0, 127);
+                            color = new Color(0xFF000000+Color.HSBtoRGB(1f/12f + 1f/4f * result.getChance() / Result.MAX_CHANCE, 1, 1));
                         } else {
                             size = 1.0f;
                             if (mc.world.getBlockState(powerSourcePos).canProvidePower()) {
@@ -86,14 +81,6 @@ public class WorldLastRenderHandler implements IRenderer {
         GlStateManager.enableTexture2D();
         GlStateManager.enableDepthTest();
         GlStateManager.depthMask(true);
-
-//		GL11.glDisable(GL11.GL_BLEND);
-//		GL11.glEnable(GL11.GL_POLYGON_OFFSET_LINE);
-//		GL11.glPolygonOffset(-1.f, -1.f);
-//
-//		GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-//		GL11.glEnable(GL11.GL_CULL_FACE);
-//		GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
     private void drawSuggestion(Tessellator tessellator, BufferBuilder bufferBuilder, int x, int y, int z, double size, Color color) {

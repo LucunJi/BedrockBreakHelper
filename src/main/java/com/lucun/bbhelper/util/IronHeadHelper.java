@@ -13,6 +13,10 @@ import java.util.*;
  * I did some modification to make it compatiable to my mod.
  */
 
+/**
+ * Please use PositionProvider instead!
+ */
+@Deprecated
 public class IronHeadHelper {
 
 	public static List<BlockPos> bbinfo(BlockPos pistonPos, EnumFacing facing) {
