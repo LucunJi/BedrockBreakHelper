@@ -26,7 +26,7 @@ public class IronHeadHelper {
 	}
 
 	public static List<BlockPos> explode(BlockPos pos, int range) {
-		Set<BlockPos> set = new HashSet();
+		Set<BlockPos> set = new HashSet(1024);
 		for (int i = -range; i <= range; i++)
 			for (int j = -range; j <= range; j++)
 				for (int k = -range; k <= range; k++)
@@ -47,6 +47,10 @@ public class IronHeadHelper {
 	public static List<BlockPos> calc(BlockPos pistonPos, BlockPos pistonHeadPos) {
 		List<BlockPos> result = explode(pistonPos, 5);
 		List<BlockPos> ret = new ArrayList();
+		result.remove(pistonPos);
+		result.remove(pistonHeadPos);
+		result.add(pistonPos);
+		result.add(pistonHeadPos);
 		for (BlockPos pos: result) {
 			// Power source needs to be destroyed first
 			if (pos.equals(pistonPos) || pos.equals(pistonHeadPos)) {
