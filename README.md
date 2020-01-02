@@ -4,7 +4,7 @@
 
 ![img](./imgs/cover@0.5x.png)
 
-* Helps you breaking bedrocks using newcake's [method](https://youtu.be/Tu4C3QNBdRY).
+* Helps you breaking bedrocks using Myren Eario's [method](https://youtu.be/BL98BDMwyWM).
 * If [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) is installed, you can see all rendering effects.
     - But you can still run it with minimal contents(texts only) shown.
     
