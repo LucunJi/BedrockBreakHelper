@@ -4,7 +4,7 @@
 
 ![img](./imgs/cover@0.5x.png)
 
-* 帮助你用 newcake 的[方法](https://youtu.be/Tu4C3QNBdRY)（[b站搬运](http://acg.tv/av34865175)) 破坏基岩。
+* 帮助你用 Myren Eario 的[方法](https://youtu.be/BL98BDMwyWM)（[b站搬运](http://acg.tv/av34865175)，Myren 的视频搬运已挂，只有 newcake 视频的搬运） 破坏基岩。
 * 如果安装了 [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib)，能看到全部的渲染效果。
     - 不过即使不安装，也可以在只有少量显示（仅文字）的情况下运行。
     
