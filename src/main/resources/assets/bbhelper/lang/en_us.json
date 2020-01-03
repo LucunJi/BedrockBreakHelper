@@ -1,5 +1,11 @@
 {
+  "bbhelper.message.toggle_active": "Bedrock Break Helper is now active",
+  "bbhelper.message.toggle_inactive": "Bedrock Break Helper is now inactive",
+  "bbhelper.message.render_amount_inc": "Render amount: increased",
+  "bbhelper.message.render_amount_dec": "Render amount: decreased",
+  "bbhelper.message.render_distance": "Render distance is changed to %d",
   "bbhelper.config.active": "Active",
   "bbhelper.config.render_distance": "Render Distance(4~16)",
-  "bbhelper.config.render_more": "If render positions 2 blocks away(manhattan) from piston"
+  "bbhelper.config.render_more": "If render positions 2 blocks away(manhattan) from piston",
+  "bbhelper.key.name": "Bedrock Break Helper"
 }

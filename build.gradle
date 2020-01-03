@@ -17,7 +17,7 @@ apply plugin: 'java'
 apply plugin: 'org.spongepowered.mixin'
 
 group 'bbhelper'
-version '1.1-1.13.2'
+version '1.2-1.13.2'
 archivesBaseName = 'Bedrock Break Helper'
 
 sourceCompatibility = 1.8

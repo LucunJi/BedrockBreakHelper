@@ -2,11 +2,10 @@ package com.lucun.bbhelper.listener;
 
 import com.google.common.collect.Lists;
 import com.lucun.bbhelper.config.Configs;
-import fi.dy.masa.malilib.MaLiLibConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import org.dimdev.rift.listener.client.KeyBindingAdder;
 import org.dimdev.rift.listener.client.KeybindHandler;
 
@@ -34,7 +33,6 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
                 }
             }
             this.lastToggleKeybindState = this.toggleKeybind.isKeyDown();
-            MaLiLibConfigs.saveToFile();
         }
     }
 
@@ -45,27 +43,23 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
                 break;
             }
         }
-        System.out.println(Configs.RENDER_DISTANCE.getIntegerValue());
-        mc.player.sendStatusMessage(new TextComponentString(
-                String.format("Render distance is changed to %s", Configs.RENDER_DISTANCE.getIntegerValue())), true);
+        mc.player.sendStatusMessage(new TextComponentTranslation("bbhelper.message.render_distance", Configs.RENDER_DISTANCE.getIntegerValue()), true);
     }
 
     private void toggleActive() {
         Configs.ACTIVE.setBooleanValue(!Configs.ACTIVE.getBooleanValue());
-        mc.player.sendStatusMessage(new TextComponentString(
-                String.format("Bedrock Break Helper is now %s", Configs.ACTIVE.getBooleanValue() ? "active" : "inactive")), true);
+        mc.player.sendStatusMessage(new TextComponentTranslation("bbhelper.message.toggle_" + (Configs.ACTIVE.getBooleanValue() ? "active" : "inactive")), true);
     }
 
     private void toggleRenderMore() {
         Configs.RENDER_MORE.setBooleanValue(!Configs.RENDER_MORE.getBooleanValue());
-        mc.player.sendStatusMessage(new TextComponentString(
-                String.format("Render amount: %s", Configs.RENDER_MORE.getBooleanValue() ? "increased" : "decreased")), true);
+        mc.player.sendStatusMessage(new TextComponentTranslation("bbhelper.message.render_amount_" + (Configs.RENDER_MORE.getBooleanValue() ? "inc" : "dec")), true);
     }
 
     @Override
     public Collection<? extends KeyBinding> getKeyBindings() {
         // key grave '`'
-        this.toggleKeybind = new KeyBinding("Bedrock Break Helper", 96, "key.categories.misc");
+        this.toggleKeybind = new KeyBinding("bbhelper.key.name", 96, "key.categories.misc");
         return Lists.newArrayList(this.toggleKeybind);
     }
 }
