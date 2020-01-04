@@ -1,4 +1,4 @@
-package com.lucun.bbhelper.config;
+package io.github.lucunji.bbhelper.config;
 
 
 import com.google.gson.JsonElement;

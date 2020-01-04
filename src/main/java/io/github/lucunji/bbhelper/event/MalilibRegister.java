@@ -1,6 +1,6 @@
-package com.lucun.bbhelper.event;
+package io.github.lucunji.bbhelper.event;
 
-import com.lucun.bbhelper.config.Configs;
+import io.github.lucunji.bbhelper.config.Configs;
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.RenderEventHandler;
 

@@ -1,7 +1,7 @@
-package com.lucun.bbhelper.listener;
+package io.github.lucunji.bbhelper.listener;
 
 import com.google.common.collect.Lists;
-import com.lucun.bbhelper.config.Configs;
+import io.github.lucunji.bbhelper.config.Configs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;

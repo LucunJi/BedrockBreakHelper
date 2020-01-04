@@ -1,4 +1,4 @@
-package com.lucun.bbhelper.util;
+package io.github.lucunji.bbhelper.util;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "package": "io.github.lucunji.bbhelper.mixin",
+  "refmap": "mixins.bbhelper.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "server": [
+  ]
+}

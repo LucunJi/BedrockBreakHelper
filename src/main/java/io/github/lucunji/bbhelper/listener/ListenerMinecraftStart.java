@@ -1,6 +1,6 @@
-package com.lucun.bbhelper.listener;
+package io.github.lucunji.bbhelper.listener;
 
-import com.lucun.bbhelper.event.MalilibRegister;
+import io.github.lucunji.bbhelper.event.MalilibRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.util.text.TextComponentString;

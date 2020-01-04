@@ -1,7 +1,7 @@
-package com.lucun.bbhelper.listener;
+package io.github.lucunji.bbhelper.listener;
 
-import com.lucun.bbhelper.util.IronHeadHelper;
-import com.lucun.bbhelper.util.MathHelper;
+import io.github.lucunji.bbhelper.util.IronHeadHelper;
+import io.github.lucunji.bbhelper.util.MathHelper;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.MainWindow;
