@@ -12,12 +12,8 @@ public class Result {
         this.chance = 12;
     }
 
-    public void decChance() {
-        decChance(1);
-    }
-
     public void decChance(int val) {
-        this.chance = (this.chance - val) < 0 ? 0 : this.chance - val;
+        this.chance = Math.max((this.chance - val), 0);
     }
 
     public BlockPos getPos() {

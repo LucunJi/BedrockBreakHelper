@@ -5,26 +5,16 @@
 ![img](./imgs/cover@0.5x.png)
 
 * 帮助你用 Myren Eario 的[方法](https://youtu.be/BL98BDMwyWM)（[b站搬运](http://acg.tv/av34865175)，Myren 的视频搬运已挂，只有 newcake 视频的搬运） 破坏基岩。
-* 如果安装了 [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib)，能看到全部的渲染效果。
-    - 不过即使不安装，也可以在只有少量显示（仅文字）的情况下运行。
+* **必须安装** [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) 和它的依赖项 [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)。
     
     
 * 显示可以放置红石信号源的位置。
-    - 绿框：可以放置，并且空着的位置；
-        - 鲜绿：TNT 可以悬空摆，也可以摆在地面附近；
+    - 绿/黄绿/橙色框：可以放置，并且空着的位置；
+        - 绿：TNT 可以悬空摆，也可以摆在地面附近；
         - 黄绿：TNT 只可以摆在地面附近（离地面两格左右，爆炸被阻挡较多）；
         - 橙色：TNT 只可以悬空摆（离地三格以上，爆炸被阻挡较少）；
     - 红框：可以放置的位置，但被非信号源方块占据了；
     - 蓝框：可以放置的位置，并且已经放了一个信号源方块。
-    
-    
-* 在打开 F3 调试界面的时候，也会在屏幕中间显示一些文字。
-    - 需要指着一个活塞方块才能看到。
-    - 他们是以活塞为中心的，可以放置信号源的方向。
-    - 只显示离活塞的距离为 1 的位置（所以快去装 malilib）。
-    - 你面对的方向是<font clolor="green">绿色</font>的。
-    - 在已经存在信号源方块的位置显示一个加号 “+”。
-    - 在没有可以放置的位置时显示一个红色的 <font color="red">“x”</font>。
   
     
 **注意：破基岩的机制比较复杂，TNT 的相对位置，其它可破坏的方块和区块边界都可能影响效果。**

@@ -20,14 +20,10 @@ public class ListenerKeybind implements KeybindHandler, KeyBindingAdder {
     public void processKeybinds() {
         if (this.toggleKeybind.isKeyDown() != this.lastToggleKeybindState) {
             if (this.toggleKeybind.isKeyDown()) {
-                if (ListenerMinecraftStart.MALILIB_INSTALLED) {
-                    if (InputMappings.isKeyDown(341)) { // check if control is pressed
-                        toggleRenderDistance();
-                    } else if (InputMappings.isKeyDown(342)) { // alt
-                        toggleRenderMore();
-                    } else {
-                        this.toggleActive();
-                    }
+                if (InputMappings.isKeyDown(341)) { // check if control is pressed
+                    toggleRenderDistance();
+                } else if (InputMappings.isKeyDown(342)) { // alt
+                    toggleRenderMore();
                 } else {
                     this.toggleActive();
                 }

@@ -5,26 +5,16 @@
 ![img](./imgs/cover@0.5x.png)
 
 * Helps you breaking bedrocks using Myren Eario's [method](https://youtu.be/BL98BDMwyWM).
-* If [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) is installed, you can see all rendering effects.
-    - But you can still run it with minimal contents(texts only) shown.
+* **REQUIRES** [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) and its dependency [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api).
     
     
 * Shows valid positions to place redstone signal sources.
-    - Greed box: possible positions and it's empty;
-        - Light Green: TNT can be placed high or low above the ground;
-        - Yellowish Green: TNT can only be placed near the ground(explosion should be mostly blocked);
+    - Greed/Lime/Orange box: possible positions and it's empty;
+        - Green: TNT can be placed high or low above the ground;
+        - Lime: TNT can only be placed near the ground(explosion should be mostly blocked);
         - Orange: TNT can only be placed high(about 3 blocks) above the ground(explosion should only be slightly blocked);
     - Red box: possible positions but occupied by a non-redstone-singal-source block;
     - Blue box: possible positions and there's a redstone signal source block.
-    
-    
-* Also some texts near center of the screen if Debug Screen is on(F3).
-    - You need to point to a piston block to see them.
-    - They are relative directions to possible signal source centered at the piston block.
-    - Only shows possible positions 1-block far from piston(go and install malilib).
-    - Direction you are facing is <font color="green">green</font>.
-    - A "+" sign if there's already a signal source block.
-    - A red cross <font color="red">"x"</font> if no possible positions.
 
 
 **ATTENTION: The mechanics of breaking a bedrock is complicated.**

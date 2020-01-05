@@ -2,22 +2,19 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven { url 'https://www.jitpack.io' }
-		maven { url 'http://repo.spongepowered.org/maven' }
 		maven { url 'https://files.minecraftforge.net/maven' }
 	}
 	dependencies {
 		//Change jitpack to moderniser when Forge uploads 1.13.2 MCPConfig
 		classpath 'com.github.Chocohead:ForgeGradle:jitpack-SNAPSHOT'
-		classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
 	}
 }
 
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'java'
-apply plugin: 'org.spongepowered.mixin'
 
 group 'bbhelper'
-version '1.2-1.13.2'
+version '1.3-1.13.2'
 archivesBaseName = 'Bedrock Break Helper'
 
 sourceCompatibility = 1.8
@@ -40,9 +37,4 @@ minecraft {
 	mappings = 'snapshot_20181130'
 	runDir = 'run'
 	tweakClass = 'org.dimdev.riftloader.launch.RiftLoaderClientTweaker'
-}
-
-mixin {
-	defaultObfuscationEnv notch
-	add sourceSets.main, 'mixins.bbhelper.refmap.json'
 }

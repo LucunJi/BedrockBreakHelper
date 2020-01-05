@@ -6,23 +6,14 @@
     ],
     "listeners": [
         {
-            "class": "io.github.lucunji.bbhelper.listener.ListenerInitialization",
+            "class": "io.github.lucunji.bbhelper.listener.ListenerMinecraftStart",
             "side": "client",
             "priority": 10
-        },{
-        "class": "io.github.lucunji.bbhelper.listener.ListenerMinecraftStart",
-        "side": "client",
-        "priority": 10
         },
         {
-        "class": "io.github.lucunji.bbhelper.listener.ListenerOverlayRender",
-        "side": "client",
-        "priority": 10
-        },
-        {
-        "class": "io.github.lucunji.bbhelper.listener.ListenerKeybind",
-        "side": "client",
-        "priority": 10
+            "class": "io.github.lucunji.bbhelper.listener.ListenerKeybind",
+            "side": "client",
+            "priority": 10
         }
     ]
 }
