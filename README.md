@@ -9,9 +9,9 @@
     
     
 * Shows valid positions to place redstone signal sources.
-    - Greed box: possible positions and it's empty;
-        - Light Green: TNT can be placed high or low above the ground;
-        - Yellowish Green: TNT can only be placed near the ground(explosion should be mostly blocked);
+    - Greed/Lime/Orange box: possible positions and it's empty;
+        - Green: TNT can be placed high or low above the ground;
+        - Lime: TNT can only be placed near the ground(explosion should be mostly blocked);
         - Orange: TNT can only be placed high(about 3 blocks) above the ground(explosion should only be slightly blocked);
     - Red box: possible positions but occupied by a non-redstone-singal-source block;
     - Blue box: possible positions and there's a redstone signal source block.
