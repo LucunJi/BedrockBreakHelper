@@ -4,7 +4,7 @@
 
 ![img](./imgs/cover@0.5x.png)
 
-* Helps you breaking bedrocks using newcake's [method](https://youtu.be/Tu4C3QNBdRY).
+* Helps you breaking bedrocks using Myren Eario's [method](https://youtu.be/BL98BDMwyWM).
 * **REQUIRES** [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) and its dependency [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api).
     
     
