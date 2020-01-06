@@ -3,20 +3,18 @@ package io.github.lucunji.bbhelper;
 import fi.dy.masa.malilib.config.ConfigManager;
 import io.github.lucunji.bbhelper.config.Configs;
 import io.github.lucunji.bbhelper.handler.KeybindHandler;
-import io.github.lucunji.bbhelper.renderer.WorldLastRenderer;
+import io.github.lucunji.bbhelper.render.WorldLastRenderer;
 import fi.dy.masa.malilib.event.RenderEventHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BedrockBreakHelper implements ModInitializer {
-	private static final MinecraftClient mc = MinecraftClient.getInstance();
 	private static Logger LOGGER = LogManager.getLogger();
 	public static FabricKeyBinding HOTKEY;
 
