@@ -9,20 +9,14 @@
     
     
 * Shows valid positions to place redstone signal sources.
-    - Greed/Lime/Orange box: possible positions and it's empty;
-        - Green: TNT can be placed high or low above the ground;
-        - Lime: TNT can only be placed near the ground(explosion should be mostly blocked);
-        - Orange: TNT can only be placed high(about 3 blocks) above the ground(explosion should only be slightly blocked);
-    - Red box: possible positions but occupied by a non-redstone-singal-source block;
-    - Blue box: possible positions and there's a redstone signal source block.
+* Suggestion box turns red/blue when occupied by a non-singal-source/signal-source block.
+* Avoid use flicking boxes, they are unstable.
 
-
-**ATTENTION: The mechanics of breaking a bedrock is complicated.**
-**Relative position of tnt, other damageable block and chunk border may affect the result.**
-
-**The code is okay mostly. But if you fail multiple times, consider change the position of tnt, signal source or use a different method to break the bedrock.**
 
 # How to use
+1. Place a piston with its back to a bedrock, and a TNT nearby.
+2. Put a signal source block in a green box to extend the piston.
+3. Ignite the TNT, keep trying to place an opposite piston with an auto-clicker(recommend tweakeroo).
 * Use **grave(\`) key**(default) to toggle on/off;
     - **Ctrl + \`** to change rendering distance;
     - **Alt + \`** to toggle if positions two-blocks far from pistons will also be rendered.

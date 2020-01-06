@@ -1,7 +1,7 @@
 {
   "bbhelper.message.toggle_active": "Bedrock Break Helper is now active",
   "bbhelper.message.toggle_inactive": "Bedrock Break Helper is now inactive",
-  "bbhelper.message.render_amount_inc": "Render amount: increased",
+  "bbhelper.message.render_amount_inc": "Render amount: all",
   "bbhelper.message.render_amount_dec": "Render amount: decreased",
   "bbhelper.message.render_distance": "Render distance is changed to %d",
   "bbhelper.config.active": "Active",

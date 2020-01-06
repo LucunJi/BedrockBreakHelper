@@ -1,7 +1,7 @@
 {
   "bbhelper.message.toggle_active": "破基岩助手开启",
   "bbhelper.message.toggle_inactive": "破基岩助手关闭",
-  "bbhelper.message.render_amount_inc": "渲染数量：较多",
+  "bbhelper.message.render_amount_inc": "渲染数量：全部",
   "bbhelper.message.render_amount_dec": "渲染数量：较少",
   "bbhelper.message.render_distance": "渲染距离切换为 %d",
   "bbhelper.config.active": "打开",

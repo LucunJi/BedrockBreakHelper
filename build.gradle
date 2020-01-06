@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'java'
 
 group 'bbhelper'
-version '1.3-1.13.2'
+version '2.0-1.13.2'
 archivesBaseName = 'Bedrock Break Helper'
 
 sourceCompatibility = 1.8
