@@ -51,7 +51,7 @@ public class PositionProvider {
         double entityY = tntPos.getY() + 0.98f / 16.0f;
         double entityZ = tntPos.getZ() + 0.5;
 
-        Set<BlockPos> setWeak = Sets.newHashSet();
+        Set<BlockPos> set = Sets.newHashSet();
         for (int j = 0; j < 16; ++j) {
             for (int k = 0; k < 16; ++k) {
                 for (int l = 0; l < 16; ++l) {
@@ -81,7 +81,7 @@ public class PositionProvider {
                             }
 
                             if (f > 0.0F) {
-                                setWeak.add(blockpos);
+                                set.add(blockpos);
                             }
                             d4 += d0 * (double)0.3F;
                             d6 += d1 * (double)0.3F;
@@ -92,6 +92,6 @@ public class PositionProvider {
                 }
             }
         }
-        return setWeak;
+        return set;
     }
 }
