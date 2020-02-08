@@ -9,7 +9,7 @@
     "LucunJi"
   ],
 
-  "license": "CC0-1.0",
+  "license": "GPL-3.0",
   "icon": "assets/bbhelper/icon.png",
 
   "environment": "*",
