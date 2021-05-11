@@ -2,17 +2,17 @@ package io.github.lucunji.bbhelper.handler;
 
 import io.github.lucunji.bbhelper.BedrockBreakHelper;
 import io.github.lucunji.bbhelper.config.Configs;
-import net.fabricmc.fabric.api.event.client.ClientTickCallback;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.TranslatableText;
 
-public class KeybindHandler implements ClientTickCallback {
+public class KeybindHandler implements ClientTickEvents.EndTick {
     private static final MinecraftClient mc = MinecraftClient.getInstance();
     private static boolean lastToggleKeybindState;
     
     @Override
-    public void tick(MinecraftClient minecraftClient) {
+    public void onEndTick(MinecraftClient minecraftClient) {
         if (BedrockBreakHelper.HOTKEY.isPressed() != lastToggleKeybindState) {
             if (BedrockBreakHelper.HOTKEY.isPressed()) {
                 if (InputUtil.isKeyPressed(mc.window.getHandle(), 341)) { // check if control is pressed

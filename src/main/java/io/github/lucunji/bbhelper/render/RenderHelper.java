@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class RenderHelper {
     public static void drawBoxOutlined(double startX, double startY, double startZ, double endX, double endY, double endZ, Color color, float lineWidth) {
-        BufferBuilder bufferBuilder = Tessellator.getInstance().getBufferBuilder();
+        BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
         bufferBuilder.begin(GL11.GL_LINE_STRIP, VertexFormats.POSITION_COLOR);
         GlStateManager.lineWidth(lineWidth);
         
@@ -38,7 +38,7 @@ public class RenderHelper {
     }
 
     public static void drawLine(double startX, double startY, double startZ, double endX, double endY, double endZ, Color color, float lineWidth) {
-        BufferBuilder bufferBuilder = Tessellator.getInstance().getBufferBuilder();
+        BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
         bufferBuilder.begin(GL11.GL_LINE_STRIP, VertexFormats.POSITION_COLOR);
         GlStateManager.lineWidth(lineWidth);
 
