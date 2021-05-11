@@ -4,6 +4,8 @@
 
 ![img](./imgs/cover@0.5x.png)
 
+**由于 1.15 后爆炸计算完全随机，这个模组不会再更新。但可以使用 [这个](https://www.youtube.com/watch?v=o3JBaioeIpc) 手动方法或自动的飞行器来破坏基岩。**
+
 * 帮助你用 Myren Eario 的[方法](https://youtu.be/BL98BDMwyWM)（[b站搬运](http://acg.tv/av34865175)，Myren 的视频搬运已挂，只有 newcake 视频的搬运） 破坏基岩。
 * **必须安装** [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) 和它的依赖项 [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)。
     

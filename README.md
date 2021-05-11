@@ -4,6 +4,9 @@
 
 ![img](./imgs/cover@0.5x.png)
 
+**This mod no longer updates because explosion becomes completely random since 1.15.**
+**Use [this](https://www.youtube.com/watch?v=o3JBaioeIpc) manual method or automatic fly machines as replacements.**
+
 * Helps you breaking bedrocks using Myren Eario's [method](https://youtu.be/BL98BDMwyWM).
 * **REQUIRES** [malilib](https://www.curseforge.com/minecraft/mc-mods/malilib) and its dependency [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api).
     
